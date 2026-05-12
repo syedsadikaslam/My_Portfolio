@@ -1,6 +1,6 @@
 
 
-import { useLayoutEffect, useRef, useEffect, useMemo } from 'react';
+import { useLayoutEffect, useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
@@ -85,6 +85,71 @@ const DynamicTracker = ({ target, subtitle }) => {
   );
 };
 
+const ProjectCard = ({ work }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleToggle = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <Link to={work.url || '#'}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group work-card-outer h-full"
+    >
+      <div className="bg-white rounded-2xl shadow-sm border border-zinc-100 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 h-full flex flex-col">
+        
+        {/* Media Container */}
+        <div className="w-full h-56 relative overflow-hidden bg-zinc-50">
+          <img
+            src={work.thumb}
+            alt={work.name}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover visual-asset transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div className="w-12 h-12 bg-white text-primary rounded-full flex items-center justify-center shadow-xl transform scale-75 group-hover:scale-100 transition-transform">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Information Section */}
+        <div className="p-7 flex flex-col flex-grow justify-between">
+          <div>
+            <h3 className="text-xl font-bold text-primary mb-3 leading-snug">
+              {work.name}
+            </h3>
+            <div 
+              onClick={handleToggle}
+              className="cursor-pointer group/desc"
+              title={isExpanded ? "Click to show less" : "Click to show more"}
+            >
+              <p className={`text-zinc-600 text-sm leading-relaxed font-medium transition-all duration-300 ${!isExpanded ? 'line-clamp-3' : ''}`}>
+                {work.info}
+              </p>
+            </div>
+          </div>
+
+          {/* Conditional Stats Tracking */}
+          {work.stats && (
+            <DynamicTracker
+              target={work.stats.amount}
+              subtitle={work.stats.text}
+            />
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+};
+
 const ProjectPreview = () => {
   const mainRef = useRef(null);
 
@@ -130,53 +195,7 @@ const ProjectPreview = () => {
     <div ref={mainRef} className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {PORTFOLIO_WORKS.map((work, i) => (
-          <Link to={work.url || '#'}
-            key={i}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group work-card-outer h-full"
-          >
-            <div className="bg-white rounded-2xl shadow-sm border border-zinc-100 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 h-full flex flex-col">
-              
-              {/* Media Container */}
-              <div className="w-full h-56 relative overflow-hidden bg-zinc-50">
-                <img
-                  src={work.thumb}
-                  alt={work.name}
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover visual-asset transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-white text-primary rounded-full flex items-center justify-center shadow-xl transform scale-75 group-hover:scale-100 transition-transform">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* Information Section */}
-              <div className="p-7 flex flex-col flex-grow justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-3 leading-snug">
-                    {work.name}
-                  </h3>
-                  <p className="text-zinc-600 text-sm leading-relaxed font-medium">
-                    {work.info}
-                  </p>
-                </div>
-
-                {/* Conditional Stats Tracking */}
-                {work.stats && (
-                  <DynamicTracker
-                    target={work.stats.amount}
-                    subtitle={work.stats.text}
-                  />
-                )}
-              </div>
-            </div>
-          </Link>
+          <ProjectCard key={i} work={work} />
         ))}
       </div>
     </div>

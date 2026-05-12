@@ -80,7 +80,7 @@ const Preloader = ({ onComplete }) => {
         </div>
 
         {/* Text Section (Fixed to bottom panel for movement) */}
-        <div className="preloader-text -mt-[5.5rem] flex flex-col items-center z-20">
+        <div className="preloader-text -mt-[7.5rem] flex flex-col items-center z-20">
           <span className="text-[10px] tracking-[0.4em] font-black text-zinc-900 uppercase leading-none">
             Sadik
           </span>
