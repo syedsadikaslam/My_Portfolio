@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Check, ArrowRight } from "lucide-react";
 import RightSidebar from "@/components/RightSidebar";
 import AIButton from "@/components/ui/AIButton";
+import { scroller } from 'react-scroll';
 
 const HeroSection = () => {
   const heroWrapper = useRef(null);
@@ -204,11 +205,12 @@ const HeroSection = () => {
 
           <div className="hero-animate flex flex-row items-center justify-center md:justify-start gap-5 w-full md:w-auto mt-0">
             <AIButton>
-              <Link to="#contact"
+              <button
+                onClick={() => scroller.scrollTo("contact", { duration: 800, smooth: "easeInOutQuart", offset: -50 })}
                 className="px-6 py-2.5 text-white text-xs md:text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 Let's Talk <ArrowRight size={14} />
-              </Link>
+              </button>
             </AIButton>
 
             <Link to="/codecraft"
