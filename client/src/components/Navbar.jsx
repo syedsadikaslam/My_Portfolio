@@ -113,10 +113,10 @@ const Navbar = () => {
             </div>
 
             {/* NAV ACTIONS */}
-            <div className="flex items-center space-x-6 text-zinc-900 dark:text-white">
+            <div className="flex items-center space-x-2 sm:space-x-6 text-zinc-900 dark:text-white">
               <Link to="/services"
                 ref={appointmentLinkRef}
-                className="font-bold hover:text-primary transition-all text-sm sm:text-base whitespace-nowrap"
+                className="font-bold underline underline-offset-4 decoration-primary/30 hover:decoration-primary transition-all text-[12px] sm:text-base whitespace-nowrap"
               >
                 Book An Appointment
               </Link>
