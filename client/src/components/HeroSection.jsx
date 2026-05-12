@@ -152,6 +152,8 @@ const HeroSection = () => {
             <img
               src="/profile.png"
               alt="Sadik Aslam"
+              fetchpriority="high"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
             />
           </div>

@@ -1,15 +1,23 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
-// Pages
-import Home from './pages/Home';
-import Blog from './pages/Blog';
-import CodeCraft from './pages/CodeCraft';
-import Experience from './pages/Experience';
-import Projects from './pages/Projects';
-import Services from './pages/Services';
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'));
+const Blog = lazy(() => import('./pages/Blog'));
+const CodeCraft = lazy(() => import('./pages/CodeCraft'));
+const Experience = lazy(() => import('./pages/Experience'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Services = lazy(() => import('./pages/Services'));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 function App() {
   return (
@@ -17,14 +25,16 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <main className="overflow-x-hidden">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/codecraft" element={<CodeCraft />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/services" element={<Services />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/codecraft" element={<CodeCraft />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/services" element={<Services />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </>

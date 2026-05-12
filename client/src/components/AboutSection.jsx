@@ -149,6 +149,8 @@ const AboutSection = () => {
                     <img
                       src="/profile2.png"
                       alt="Sadik Aslam"
+                      loading="lazy"
+                      decoding="async"
                       style={{ objectFit: "contain", objectPosition: "top" }}
                       className="transition-all duration-700 brightness-[0.9] contrast-110 group-hover:brightness-110 group-hover:scale-[1.03]"
                     />
@@ -231,7 +233,13 @@ const AboutSection = () => {
                 className="tech-card flex flex-col items-center p-3 rounded-2xl bg-white dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 hover:border-primary/40 transition-all shadow-sm"
               >
                 <div className="relative w-8 h-8 mb-2">
-                  <img src={tool.icon} alt={tool.label} className="absolute inset-0 w-full h-full object-contain" />
+                  <img 
+                    src={tool.icon} 
+                    alt={tool.label} 
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-contain" 
+                  />
                 </div>
                 <p className="text-[8px] font-bold text-zinc-400 uppercase tracking-tighter text-center">
                   {tool.label}

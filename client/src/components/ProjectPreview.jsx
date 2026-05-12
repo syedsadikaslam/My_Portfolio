@@ -143,6 +143,8 @@ const ProjectPreview = () => {
                 <img
                   src={work.thumb}
                   alt={work.name}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover visual-asset transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
