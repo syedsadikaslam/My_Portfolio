@@ -224,16 +224,16 @@ const AboutSection = () => {
           <h3 className="text-center text-4xl font-black text-zinc-900 dark:text-white mb-5">
             Standardized Toolkit
           </h3>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-3">
             {TECH_STACK.map((tool, i) => (
               <div
                 key={i}
-                className="tech-card flex flex-col items-center p-6 rounded-3xl bg-white dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 hover:border-primary/40 transition-all shadow-sm"
+                className="tech-card flex flex-col items-center p-3 rounded-2xl bg-white dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 hover:border-primary/40 transition-all shadow-sm"
               >
-                <div className="relative w-12 h-12 mb-4">
+                <div className="relative w-8 h-8 mb-2">
                   <img src={tool.icon} alt={tool.label} className="absolute inset-0 w-full h-full object-contain" />
                 </div>
-                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-tighter">
+                <p className="text-[8px] font-bold text-zinc-400 uppercase tracking-tighter text-center">
                   {tool.label}
                 </p>
               </div>

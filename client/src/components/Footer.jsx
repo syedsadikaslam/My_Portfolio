@@ -45,7 +45,7 @@ const MainFooter = () => {
         
         {/* Branding Section */}
         <div className="reveal-block">
-          <h1 className="text-3xl font-extrabold text-primary tracking-tight uppercase">MD SADIK</h1>
+          <h1 className="text-3xl font-extrabold text-primary tracking-tight uppercase">SADIK ASLAM</h1>
           <p className="text-xs sm:text-sm text-secondary mt-1 font-medium italic">
             Full Stack Developer • AI/ML Enthusiast
           </p>
