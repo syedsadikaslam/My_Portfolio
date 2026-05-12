@@ -1,9 +1,9 @@
-'use client';
+
 
 import { useRef, useLayoutEffect, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { Mail, Globe, Wrench } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -131,16 +131,14 @@ export default function ServicesSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-          <Link
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe7wYmNWGFWes-8lDIEtuTWKSuXBzQxMI-MJT84j3JkNfPN8A/viewform?usp=header"
+          <Link to="https://docs.google.com/forms/d/e/1FAIpQLSe7wYmNWGFWes-8lDIEtuTWKSuXBzQxMI-MJT84j3JkNfPN8A/viewform?usp=header"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 bg-primary text-white rounded-2xl font-black shadow-xl shadow-primary/20 hover:brightness-110 transition-all active:scale-95"
           >
             Book Appointment
           </Link>
-          <Link
-            href="mailto:mdsadiksadik464@gmail.com"
+          <Link to="mailto:mdsadiksadik464@gmail.com"
             className="px-10 py-4 border-2 border-primary text-primary rounded-2xl font-black hover:bg-primary hover:text-white transition-all active:scale-95"
           >
             Email Me
@@ -152,6 +150,6 @@ export default function ServicesSection() {
 }
 
 export const metadata = {
-  title: 'Services - Md Sadik',
-  description: 'Explore the expert digital services provided by Md Sadik, including full-stack development and technical consultancy.',
+  title: 'Services - Sadik Aslam',
+  description: 'Explore the expert digital services provided by Sadik Aslam, including full-stack development and technical consultancy.',
 };

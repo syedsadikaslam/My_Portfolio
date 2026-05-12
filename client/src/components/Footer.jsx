@@ -1,9 +1,11 @@
-'use client';
 
-import Link from "next/link";
+
+import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
-import { usePathname, useRouter } from "next/navigation";
+import { useLocation as usePathname, useNavigate as useRouter } from 'react-router-dom';
+import AIButton from "@/components/ui/AIButton";
+
 
 const MainFooter = () => {
   const currentPath = usePathname();
@@ -19,8 +21,8 @@ const MainFooter = () => {
       offset: -60
     };
 
-    if (currentPath !== '/') {
-      navigationRouter.push('/');
+    if (currentPath.pathname !== '/') {
+      navigationRouter('/');
       // Slight delay to allow page transition before scrolling
       setTimeout(() => {
         scroller.scrollTo(anchorId, scrollConfig);
@@ -57,7 +59,7 @@ const MainFooter = () => {
           >
             About
           </button>
-          <Link href="/projects" className="hover:text-primary transition-colors duration-200">
+          <Link to="/projects" className="hover:text-primary transition-colors duration-200">
             Projects
           </Link>
           <button
@@ -74,12 +76,14 @@ const MainFooter = () => {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Link
-              href="/services"
+            <AIButton>
+            <Link to="/services"
               className="inline-block bg-primary text-white font-bold py-3 px-10 rounded-xl text-lg shadow-lg hover:shadow-primary/20 transition-all hover:-translate-y-1"
             >
               Book a Service
             </Link>
+            </AIButton>
+
           </motion.div>
 
           <motion.a

@@ -1,10 +1,10 @@
-'use client';
+
 
 import { useLayoutEffect, useRef, useEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,10 +18,11 @@ const PORTFOLIO_WORKS = [
     thumb: "/snapshots/sadikart.png",
   },
   {
-    name: "SadiKart – Admin Panel",
-    info: "A secure role-based admin dashboard for managing products, inventory, orders, and users in a full-scale e-commerce ecosystem.",
-    url: "https://sadikartadmin.vercel.app",
-    thumb: "/snapshots/sadikartadmin.png",
+  name: "InternX – AI-Powered Aggregator",
+  info: "A high-performance MERN ecosystem that centralizes global internships and college events. Features automated web-scraping logic, real-time application tracking, and an AI-driven recommendation engine for student career paths.",
+  stats: { amount: "500+", text: "Active Opportunities" },
+  url: "https://internxai.vercel.app/",
+  thumb: "/snapshots/internx.png", 
   },
   {
     name: "FloraScan – AI Powered Plant Analysis Tool",
@@ -129,8 +130,7 @@ const ProjectPreview = () => {
     <div ref={mainRef} className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {PORTFOLIO_WORKS.map((work, i) => (
-          <Link
-            href={work.url || '#'}
+          <Link to={work.url || '#'}
             key={i}
             target="_blank"
             rel="noopener noreferrer"
@@ -140,11 +140,10 @@ const ProjectPreview = () => {
               
               {/* Media Container */}
               <div className="w-full h-56 relative overflow-hidden bg-zinc-50">
-                <Image
+                <img
                   src={work.thumb}
                   alt={work.name}
-                  fill
-                  className="object-cover visual-asset transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full object-cover visual-asset transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="w-12 h-12 bg-white text-primary rounded-full flex items-center justify-center shadow-xl transform scale-75 group-hover:scale-100 transition-transform">

@@ -1,18 +1,18 @@
-'use client';
+
 
 import { useLayoutEffect, useRef, useState, useEffect, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
-import Image from 'next/image';
-import { animateScroll as scroll } from 'react-scroll';
-import { usePathname, useRouter } from 'next/navigation';
+import { Link } from 'react-router-dom';
+
+import { animateScroll as scroll, scroller } from 'react-scroll';
+import { useLocation as usePathname, useNavigate as useRouter } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Data structure refactored for uniqueness
 const NAV_MENU_ITEMS = [
-  { path: 'https://drive.google.com/file/d/176F-etBbMRRbLyYYBLSIl46Qo6RVRmpp/view?usp=sharing', label: 'View Resume', mode: 'external', openNew: true },
+  { path: 'https://drive.google.com/file/d/1F6EbLm0-VWTT0xWfjMzKyCesVuUio1kB/view?usp=drivesdk', label: 'View Resume', mode: 'external', openNew: true },
   { path: 'hero', label: 'Home', mode: 'anchor' },
   { path: '/blog', label: 'Blog', mode: 'internal' },
   { path: 'about', label: 'About Me', mode: 'anchor' },
@@ -83,20 +83,18 @@ const Navbar = () => {
   const processNavigation = useCallback((targetId) => {
     const config = { duration: 850, smooth: "easeInOutCubic", offset: -50 };
 
-    if (currentUrlPath !== '/') {
-      navRouter.push('/');
+    if (currentUrlPath.pathname !== '/') {
+      navRouter('/');
       setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) scroll.scrollTo(el.offsetTop - 50, config);
+        scroller.scrollTo(targetId, config);
       }, 300);
     } else {
-      const el = document.getElementById(targetId);
-      if (el) scroll.scrollTo(el.offsetTop - 50, config);
+      scroller.scrollTo(targetId, config);
     }
     
     setIsSidebarOpen(false);
     if (targetId === 'reviews') setHasInteractedWithReviews(true);
-  }, [currentUrlPath, navRouter]);
+  }, [currentUrlPath.pathname, navRouter]);
 
   return (
     <>
@@ -105,34 +103,33 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-full">
             
             {/* BRANDING */}
-            <div className="relative h-12 w-48 flex items-center">
-              <Link href="/" className="brand-text-anim absolute inset-y-0 left-0 flex items-center pt-2">
-                <span className="text-xl font-black text-primary ml-1 tracking-tight">SADIK</span>
+            <div className="relative h-12 w-32 flex items-center">
+              <Link to="/" className="brand-text-anim absolute inset-y-0 left-0 flex items-center pt-2">
+                <span className="text-xl font-black text-zinc-900 dark:text-white tracking-tighter">SADIK</span>
               </Link>
-              <Link href="/" className="brand-logo-anim absolute inset-y-0 left-0 flex items-center justify-center w-12 h-12 opacity-0">
-                <Image src="/logo.png" alt="Portfolio Logo" width={45} height={45} />
+              <Link to="/" className="brand-logo-anim absolute inset-y-0 left-0 flex items-center justify-center w-12 h-12 opacity-0">
+                <img src="/logo.png" alt="Portfolio Logo" width={45} height={45} />
               </Link>
             </div>
 
             {/* NAV ACTIONS */}
-            <div className="flex items-center space-x-4 text-primary">
-              <Link
-                href="/services"
+            <div className="flex items-center space-x-6 text-zinc-900 dark:text-white">
+              <Link to="/services"
                 ref={appointmentLinkRef}
-                className="font-bold underline decoration-primary/30 hover:decoration-primary transition-all text-sm sm:text-base whitespace-nowrap"
+                className="font-bold hover:text-primary transition-all text-sm sm:text-base whitespace-nowrap"
               >
                 Book An Appointment
               </Link>
 
               {/* TOGGLE BUTTON */}
               <button
-                className="relative flex flex-col justify-center items-center w-9 h-9 z-[1000]"
+                className="relative flex flex-col justify-center items-end w-8 h-8 z-[1000] group"
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 aria-label="Menu Toggle"
               >
-                <span className={`h-0.5 w-7 bg-primary rounded transition-all ${isSidebarOpen ? 'rotate-45 translate-y-1.5' : 'mb-1.5'}`}></span>
-                <span className={`h-0.5 w-7 bg-primary rounded transition-all ${isSidebarOpen ? 'opacity-0 scale-0' : 'mb-1.5'}`}></span>
-                <span className={`h-0.5 w-7 bg-primary rounded transition-all ${isSidebarOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                <span className={`h-[2px] bg-zinc-900 dark:bg-white rounded-full transition-all duration-300 ${isSidebarOpen ? 'w-7 rotate-45 translate-y-[6px]' : 'w-7 mb-1.5'}`}></span>
+                <span className={`h-[2px] bg-zinc-900 dark:bg-white rounded-full transition-all duration-300 ${isSidebarOpen ? 'w-0 opacity-0' : 'w-7 mb-1.5'}`}></span>
+                <span className={`h-[2px] bg-zinc-900 dark:bg-white rounded-full transition-all duration-300 ${isSidebarOpen ? 'w-7 -rotate-45 -translate-y-[6px]' : 'w-5'}`}></span>
 
                 {!isSidebarOpen && !hasInteractedWithReviews && (
                   <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-ping"></span>
@@ -155,7 +152,7 @@ const Navbar = () => {
         className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[999] flex flex-col translate-x-full"
       >
         <div className="flex justify-between items-center p-6 border-b border-muted/20">
-          <Image src="/logo.png" alt="Branding" width={38} height={38} />
+          <img src="/logo.png" alt="Branding" width={38} height={38} />
           <button onClick={() => setIsSidebarOpen(false)} className="text-3xl hover:rotate-90 transition-transform">&times;</button>
         </div>
 
@@ -178,9 +175,8 @@ const Navbar = () => {
                 {item.hint && !hasInteractedWithReviews && <span className="ml-2 inline-block w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />}
               </div>
             ) : (
-              <Link
-                key={index}
-                href={item.path}
+              <Link key={index}
+                to={item.path}
                 target={item.openNew ? '_blank' : '_self'}
                 rel={item.openNew ? 'noopener noreferrer' : undefined}
                 className="nav-item-link group block py-3 px-3 rounded-xl hover:bg-zinc-50 transition-colors"

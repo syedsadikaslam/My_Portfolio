@@ -1,7 +1,7 @@
-'use client';
+
 
 import { forwardRef, memo } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 /**
  * Refactored Sidebar Component
@@ -23,8 +23,7 @@ const RightSidebar = forwardRef((props, sideRef) => {
 
       {/* Social Interaction Links - Pointer events enabled specifically for links */}
       <div className="pb-12 flex flex-col items-center space-y-7 pointer-events-auto">
-        <Link 
-          href="https://github.com/syedsadikaslam" 
+        <Link to="https://github.com/syedsadikaslam" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-secondary transition-all duration-300 hover:text-primary hover:scale-125 hover:-rotate-12 active:scale-95"
@@ -35,8 +34,7 @@ const RightSidebar = forwardRef((props, sideRef) => {
           </svg>
         </Link>
 
-        <Link 
-          href="https://www.linkedin.com/in/Md-Sadik-9104a2252" 
+        <Link to="https://www.linkedin.com/in/Md-Sadik-9104a2252" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-secondary transition-all duration-300 hover:text-primary hover:scale-125 hover:rotate-12 active:scale-95"

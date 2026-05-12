@@ -1,16 +1,28 @@
-'use client';
+
 
 import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+
 import { ExternalLink, Github } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // 1️⃣ REFACTORED PROJECT REPOSITORY
 const PROJECT_COLLECTION = [
+  {
+    title: "INTELLMEET – AI-Enterprise Meeting & Collaboration Platform",
+    "brief": "A production-grade MERN stack collaboration hub featuring real-time video, AI meeting intelligence, and team management.",
+    "overview": "A scalable platform designed for modern remote teams that transforms unproductive meetings into actionable events. It features real-time video conferencing along with AI-powered summaries and automated action item extraction.",
+    "solution": "Eliminates manual note-taking through AI intelligence, reducing meeting follow-up time by 40-60%. It consolidates fragmented tools into a single, secure enterprise environment.",
+    "blockers": "Optimizing WebRTC and Socket.io clusters to handle high-concurrency (500+ participants), and managing complex environment variables and CORS policies across production environments like Render and Vercel.",
+    "roadmap": "Implementing auto-scaling with Kubernetes orchestration and Helm charts, setting up Prometheus and Grafana for advanced observability, and adding automated quotation/invoice generators.",
+    "stack": ["MongoDB", "Express.js", "React 19", "Node.js", "TypeScript", "Socket.io", "WebRTC", "Redis", "Gemini API", "Docker", "Tailwind CSS v4"],
+    "demoUrl": "https://intellmeets.vercel.app", 
+    "sourceUrl": "https://github.com/syedsadikaslam/IntellMeet-AI-Powered-Enterprise-Meeting-Collaboration-Platform",
+    "imagePath": "/snapshots/intellmeet.png"
+  },
   {
     title: "SadiKart – PERN E-Commerce Platform",
     brief: "A production-ready full-stack e-commerce platform built using the PERN stack.",
@@ -22,8 +34,20 @@ const PROJECT_COLLECTION = [
     demoUrl: "https://sadikart.vercel.app",
     sourceUrl: "https://github.com/syedsadikaslam/SadiKart-Modern-E-Commerce-Platform-PERN-Redux-Brevo-Mail-",
     imagePath: "/snapshots/sadikart.png",
-    kpi: { amount: "100+", text: "Users Signups" },
   },
+  {
+    title: "InternX – AI-Powered Career Aggregator",
+    brief: "A Next-Gen MERN platform using Gemini 2.5 Flash to automate internship & event discovery.",
+    overview: "InternX solves the manual overhead of posting opportunities. By integrating Google's Gemini 2.5 Flash, the platform allows admins to generate fully structured job descriptions and metadata from simple natural language prompts, drastically reducing content creation time.",
+    solution: "Traditional aggregators are slow and manual. InternX combines the power of Generative AI with a robust MERN architecture to provide a fast, automated, and student-centric ecosystem for career growth.",
+    blockers: "Fine-tuning the AI prompts to ensure structured data (JSON) output from Gemini was a challenge, alongside implementing secure Google OAuth and managing complex state transitions in React 19.",
+    roadmap: "Implementing AI-based resume parsing for students and a smart-matching algorithm that notifies users when a generated internship fits their profile.",
+    stack: ["React 19", "Gemini 2.5 Flash", "Node.js (Express 5)", "MongoDB", "Passport.js", "Tailwind CSS"],
+    demoUrl: "https://internxai.vercel.app/",
+    sourceUrl: "https://github.com/syedsadikaslam/College-Events-Aggregator", 
+    imagePath: "/snapshots/internx.png",
+    kpi: { amount: "500+", text: "Active Opportunities" },
+ },
   {
     title: "SadiKart – Admin Panel",
     brief: "A secure and feature-rich admin dashboard for managing a full-scale e-commerce platform.",
@@ -109,11 +133,10 @@ const WorkCard = ({ item, openModal }) => (
     className="group bg-white rounded-2xl shadow-lg border border-zinc-100 overflow-hidden flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl cursor-pointer"
   >
     <div className="h-52 w-full relative overflow-hidden bg-zinc-100">
-      <Image 
+      <img 
         src={item.imagePath} 
         alt={item.title} 
-        fill 
-        className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
       />
       <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors" />
     </div>
@@ -160,7 +183,7 @@ const DetailOverlay = ({ project, exit }) => {
           </header>
 
           <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-            <Image src={project.imagePath} alt="Project view" fill className="object-cover" />
+            <img src={project.imagePath} alt="Project view" className="absolute inset-0 w-full h-full object-cover" />
           </div>
 
           {project.kpi && <MetricDisplay metric={project.kpi.amount} label={project.kpi.text} isAnimated={false} onDark={true} />}
@@ -232,7 +255,7 @@ const ProjectsSection = () => {
 
       {/* PROMO CARD */}
       <div className="mb-20">
-        <Link href="/services" className="block p-10 bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-3xl text-center group transition-all hover:shadow-2xl hover:border-indigo-200">
+        <Link to="/services" className="block p-10 bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-3xl text-center group transition-all hover:shadow-2xl hover:border-indigo-200">
           <h3 className="text-2xl font-bold text-primary mb-3 group-hover:scale-105 transition-transform">Ready to start a project?</h3>
           <p className="text-zinc-600 text-sm sm:text-base max-w-lg mx-auto">
             I offer full-stack development, debugging, and consulting. Let's build something scalable together.
@@ -250,7 +273,7 @@ const ProjectsSection = () => {
       </div>
 
       {/* FLOAT BUTTON */}
-      <Link href="/services" ref={floatingBtn} className="fixed bottom-10 right-10 bg-primary text-white font-bold px-8 py-4 rounded-full shadow-2xl z-[100] hover:brightness-110 flex items-center gap-2">
+      <Link to="/services" ref={floatingBtn} className="fixed bottom-10 right-10 bg-primary text-white font-bold px-8 py-4 rounded-full shadow-2xl z-[100] hover:brightness-110 flex items-center gap-2">
         Hire Me
       </Link>
 

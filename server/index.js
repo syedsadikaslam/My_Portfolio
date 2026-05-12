@@ -15,6 +15,9 @@ app.use(
   cors({
     origin: [
       "https://sadikaslam.in",
+      "https://www.sadikaslam.in",
+      "https://sadik-portfolio-v2.vercel.app", // Added common default if Vercel is used
+      "http://localhost:5173",
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -40,13 +43,9 @@ mongoose
    ROUTES
 ================================ */
 
-const projectsRouter = require("./routes/ProjectRoutes");
-const experienceRouter = require("./routes/ExperienceRoutes");
 const mediumRouter = require("./routes/MediumRoutes");
 const reviewRouter = require("./routes/ReviewRoutes");
 
-app.use("/api/projects", projectsRouter);
-app.use("/api/experience", experienceRouter);
 app.use("/api/medium", mediumRouter);
 app.use("/api/reviews", reviewRouter);
 

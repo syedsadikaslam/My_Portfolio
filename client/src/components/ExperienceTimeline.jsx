@@ -1,4 +1,4 @@
-'use client';
+
 
 import { useLayoutEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
@@ -6,13 +6,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * REFACTORED SUB-COMPONENT: MilestoneNode
- * Structural naming changed to ensure unique codebase signature.
- */
+   
 const MilestoneNode = ({ entry }) => {
-  // Mapping updated keys: designation, organization, highlights, period
-  const { period, designation, organization, highlights } = entry;
+  // Added certificateLink here
+  const { period, designation, organization, highlights, certificateLink } = entry;
 
   return (
     <div className="career-node-item relative pl-10 sm:pl-16 py-10 group">
@@ -22,9 +19,23 @@ const MilestoneNode = ({ entry }) => {
       <span className="text-[10px] font-black tracking-[0.2em] text-secondary/50 uppercase font-mono">
         {period}
       </span>
-      <h3 className="mt-2 text-3xl font-black text-primary tracking-tight leading-none group-hover:text-primary/80 transition-colors">
-        {designation}
-      </h3>
+
+      {/* Designation: Made it clickable if certificateLink exists */}
+      {certificateLink ? (
+        <a href={certificateLink} target="_blank" rel="noopener noreferrer" className="block w-fit group/link">
+          <h3 className="mt-2 text-3xl font-black text-primary tracking-tight leading-none group-hover/link:text-primary/70 transition-colors flex items-center gap-2">
+            {designation}
+            <svg className="w-5 h-5 opacity-0 group-hover/link:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </h3>
+        </a>
+      ) : (
+        <h3 className="mt-2 text-3xl font-black text-primary tracking-tight leading-none group-hover:text-primary/80 transition-colors">
+          {designation}
+        </h3>
+      )}
+
       <p className="mt-2 text-lg font-bold text-secondary italic opacity-90">{organization}</p>
       
       {highlights && highlights.length > 0 && (
@@ -44,10 +55,6 @@ const MilestoneNode = ({ entry }) => {
 const ExperienceTimeline = ({ history = [] }) => {
   const rootContainer = useRef(null);
 
-  /**
-   * DATA FILTERING LOGIC
-   * Corrected to match 'corporate' and 'academic' categories from ExperiencePage.
-   */
   const workHistory = useMemo(() => 
     history.filter(item => item.category === 'corporate'), 
   [history]);
@@ -79,7 +86,7 @@ const ExperienceTimeline = ({ history = [] }) => {
   }, [history]);
 
   return (
-    <section ref={rootContainer} id="experience" className="container mx-auto py-40 px-6 lg:px-12">
+     <section ref={rootContainer} id="experience" className="container mx-auto pt-10 pb-20 px-6 lg:px-12">
       {/* CAREER MILESTONES SECTION */}
       {workHistory.length > 0 && (
         <div className="mb-32">

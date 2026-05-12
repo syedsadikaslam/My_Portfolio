@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+     --background: 0 0% 100%;
+    --foreground: 222 47% 11%;  
+    
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+     --muted-foreground: 215 16% 35%; 
+    
+    --border: 214 32% 91%;
+    --radius: 0.75rem;
+    --font-primary-sans: "Geist Sans", sans-serif;
+    --font-primary-mono: "Geist Mono", monospace;
+  }
+
+  .dark {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+
+    --muted-foreground: 215 20% 65%;
+    --border: 217 33% 17%;
+  }
+
+  * {
+    @apply border-border transition-colors duration-200;  
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground;
+    font-family: var(--font-primary-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+   .visual-shimmer {
+    @apply relative overflow-hidden bg-muted/50;
+  }
+  .visual-shimmer::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(
+      90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.08), 
+      transparent
+    );
+    animation: wave-shimmer 2s infinite linear;
+  }
+
+   .brand-text-clip {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-foreground via-foreground/80 to-muted-foreground;
+  }
+
+   .portfolio-card {
+    @apply border bg-card p-6 rounded-[var(--radius)] transition-all hover:shadow-lg hover:-translate-y-1;
+  }
+}
+
+@keyframes wave-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.ticker-inner {
+  display: flex;
+  width: fit-content;
+  animation: loop 40s linear infinite;
+}
+@keyframes loop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
