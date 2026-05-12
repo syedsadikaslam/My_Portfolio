@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Preloader from './components/Preloader';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -20,8 +21,11 @@ const PageLoader = () => (
 );
 
 function App() {
+  const [isSiteLoading, setIsSiteLoading] = useState(true);
+
   return (
     <>
+      {isSiteLoading && <Preloader onComplete={() => setIsSiteLoading(false)} />}
       <ScrollToTop />
       <Navbar />
       <main className="overflow-x-hidden">
