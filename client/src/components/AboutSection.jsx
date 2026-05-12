@@ -224,7 +224,7 @@ const AboutSection = () => {
           <h3 className="text-center text-4xl font-black text-zinc-900 dark:text-white mb-5">
             Standardized Toolkit
           </h3>
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-3">
+          <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-4">
             {TECH_STACK.map((tool, i) => (
               <div
                 key={i}
