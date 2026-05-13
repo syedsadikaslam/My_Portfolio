@@ -4,7 +4,7 @@ import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-import { Mail, Globe, Wrench, ArrowRight, CheckCircle2, X } from 'lucide-react';
+import { Mail, Globe, Wrench, ArrowRight, CheckCircle2, X, Layers, Cloud, Database } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +13,7 @@ const PROFESSIONAL_OFFERINGS = [
   {
     name: "Website Development",
     Graphic: Globe,
-    info: "I design and develop fully responsive, fast, and SEO-optimized websites using modern technologies like Next.js and Tailwind CSS. Each site is built with immense focus on detail, ensuring seamless user experience and performance.",
+    info: "High-performance, SEO-optimized websites built with complete ownership, security, and scalability in mind.",
     modalDesc: "High-performance, SEO-optimized websites built with complete ownership, security, and scalability in mind.",
     workflow: [
       "Requirement Analysis.",
@@ -25,9 +25,79 @@ const PROFESSIONAL_OFFERINGS = [
     ]
   },
   {
+    name: "SaaS Development",
+    Graphic: Layers,
+    info: "Complete SaaS platforms with authentication, dashboards, multi-tenant systems, and scalable architecture.",
+    modalDesc: "Complete SaaS platforms with authentication, dashboards, multi-tenant systems, and scalable architecture.",
+    workflow: [
+      "Architecture Planning.",
+      "Authentication & Multi-tenancy Setup.",
+      "Dashboard & Role Management.",
+      "Subscription & Payment Integration.",
+      "Security Audits & Testing.",
+      "Scalable Deployment."
+    ]
+  },
+  {
+    name: "Web App Development",
+    Graphic: Globe,
+    info: "Custom web applications tailored to your exact business logic and workflows.",
+    modalDesc: "Custom web applications tailored to your exact business logic and workflows.",
+    workflow: [
+      "Business Logic Mapping.",
+      "System Architecture Design.",
+      "Frontend & Backend Integration.",
+      "Interactive UI Implementation.",
+      "Rigorous Testing (QA).",
+      "Launch & Iteration."
+    ]
+  },
+  {
+    name: "Backend & API Development",
+    Graphic: Database,
+    info: "Secure, scalable backend systems with clean architecture and well-documented APIs.",
+    modalDesc: "Secure, scalable backend systems with clean architecture and well-documented APIs.",
+    workflow: [
+      "Database Schema Design.",
+      "API Route Development.",
+      "Security & Authentication Implementation.",
+      "Performance Optimization.",
+      "API Documentation (Swagger/Postman).",
+      "Monitoring & Maintenance."
+    ]
+  },
+  {
+    name: "Hosting & Deployment",
+    Graphic: Cloud,
+    info: "Production-ready deployment using modern cloud platforms with full ownership and control.",
+    modalDesc: "Production-ready deployment using modern cloud platforms with full ownership and control.",
+    workflow: [
+      "Server Selection & Setup.",
+      "Environment Configuration.",
+      "CI/CD Pipeline Creation.",
+      "Domain & SSL Integration.",
+      "Database Migration.",
+      "Uptime Monitoring Setup."
+    ]
+  },
+  {
+    name: "Email Configuration",
+    Graphic: Mail,
+    info: "Professional email systems with domain-based emails and high deliverability.",
+    modalDesc: "Professional email systems with domain-based emails and high deliverability.",
+    workflow: [
+      "Domain DNS Setup (MX, TXT).",
+      "SPF, DKIM, DMARC Configuration.",
+      "Workspace/Email Provider Setup.",
+      "Email Warm-up Strategy.",
+      "Deliverability Testing.",
+      "Ongoing Troubleshooting."
+    ]
+  },
+  {
     name: "Consultancy",
     Graphic: Mail,
-    info: "Get personalized digital consultancy on your online presence, website optimization, or project idea — your first session is absolutely free. If you purchase a website, consultancy remains free for future discussions too.",
+    info: "Direct, practical advice on architecture, product, and technical decisions.",
     modalDesc: "Focused sessions with clear outcomes — no vague theory.",
     workflow: [
       "Optional NDA.",
@@ -41,7 +111,7 @@ const PROFESSIONAL_OFFERINGS = [
   {
     name: "Software Issue Fixing",
     Graphic: Wrench,
-    info: "I troubleshoot and resolve software-related issues on laptops and computers, including system errors, slow performance, installation problems, and software conflicts. With years of experience, I provide precise, practical solutions to get your systems running smoothly.",
+    info: "Debugging and fixing system issues, performance problems, and software errors.",
     modalDesc: "Debugging and fixing system issues, performance problems, and software errors.",
     workflow: [
       "Issue Diagnosis.",
@@ -140,7 +210,7 @@ export default function ServicesSection() {
               <h3 className="text-xl font-extrabold text-primary mb-4 uppercase tracking-wide">
                 {item.name}
               </h3>
-              <p className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow">
+              <p className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow line-clamp-3">
                 {item.info}
               </p>
               <button 
