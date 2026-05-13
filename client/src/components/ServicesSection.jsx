@@ -1,6 +1,7 @@
 
 
 import { useRef, useLayoutEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
@@ -210,11 +211,7 @@ export default function ServicesSection() {
               <h3 className="text-xl font-extrabold text-primary mb-4 uppercase tracking-wide">
                 {item.name}
               </h3>
-              <p 
-                onClick={() => setSelectedService(item)}
-                className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow line-clamp-3 cursor-pointer hover:text-primary transition-colors"
-                title="Read full details"
-              >
+              <p className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow line-clamp-3">
                 {item.info}
               </p>
               <button 
@@ -255,7 +252,8 @@ export default function ServicesSection() {
       </div>
 
       {/* Services Modal */}
-      <AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
         {selectedService && (
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6">
             <motion.div 
@@ -319,7 +317,9 @@ export default function ServicesSection() {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
