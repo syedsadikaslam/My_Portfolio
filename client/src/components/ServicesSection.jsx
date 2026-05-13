@@ -257,7 +257,7 @@ export default function ServicesSection() {
       {/* Services Modal */}
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -284,11 +284,11 @@ export default function ServicesSection() {
                   <div className="p-4 bg-zinc-100 rounded-2xl">
                     <selectedService.Graphic className="w-8 h-8 text-primary" strokeWidth={1.5} />
                   </div>
-                  <h2 className="text-3xl font-black text-primary">{selectedService.name}</h2>
+                  <h2 className="text-2xl sm:text-3xl font-black text-primary">{selectedService.name}</h2>
                 </div>
                 
                 <div className="border-l-4 border-zinc-200 pl-4 py-1 mb-10">
-                  <p className="text-secondary text-lg font-medium">
+                  <p className="text-secondary text-base sm:text-lg font-medium">
                     {selectedService.modalDesc}
                   </p>
                 </div>
@@ -299,7 +299,7 @@ export default function ServicesSection() {
                     {selectedService.workflow.map((step, i) => (
                       <div key={i} className="flex items-center gap-4 bg-zinc-50 p-4 rounded-xl border border-zinc-100">
                         <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
-                        <span className="text-secondary font-semibold">{step}</span>
+                        <span className="text-secondary text-sm sm:text-base font-semibold">{step}</span>
                       </div>
                     ))}
                   </div>
