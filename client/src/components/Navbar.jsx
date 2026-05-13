@@ -150,9 +150,9 @@ const Navbar = () => {
       {/* DRAWER MENU */}
       <aside
         ref={sidebarMenuRef}
-        className="fixed top-0 right-0 h-full w-[80vw] sm:w-80 bg-white shadow-2xl z-[999] flex flex-col translate-x-full"
+        className="fixed top-0 right-0 h-full w-[70vw] sm:w-80 bg-white shadow-2xl z-[999] flex flex-col translate-x-full"
       >
-        <div className="flex justify-between items-center p-6 border-b border-muted/20">
+        <div className="flex justify-between items-center p-6 border-b border-black/5">
           <img src="/logo.png" alt="Branding" width={38} height={38} />
           <button onClick={() => setIsSidebarOpen(false)} className="text-3xl hover:rotate-90 transition-transform">&times;</button>
         </div>
@@ -193,7 +193,7 @@ const Navbar = () => {
         </nav>
 
         {/* SOCIAL INTEGRATION */}
-        <div className="p-8 border-t border-muted/10 flex justify-center gap-8">
+        <div className="p-8 border-t border-black/5 flex justify-center gap-8">
           <a href="https://github.com/syedsadikaslam" target="_blank" rel="noreferrer" className="text-secondary hover:text-primary transform hover:scale-110 transition-all">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /></svg>
           </a>
