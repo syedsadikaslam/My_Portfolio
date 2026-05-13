@@ -181,7 +181,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section ref={containerNode} className="container mx-auto py-32 px-4 sm:px-6 lg:px-8">
+    <section ref={containerNode} className="container mx-auto pt-10 pb-24 md:py-32 px-4 sm:px-6 lg:px-8">
       {/* Intro Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl font-black tracking-tight text-primary mb-4 uppercase">
@@ -210,7 +210,11 @@ export default function ServicesSection() {
               <h3 className="text-xl font-extrabold text-primary mb-4 uppercase tracking-wide">
                 {item.name}
               </h3>
-              <p className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow line-clamp-3">
+              <p 
+                onClick={() => setSelectedService(item)}
+                className="text-secondary text-sm leading-relaxed font-medium mb-6 flex-grow line-clamp-3 cursor-pointer hover:text-primary transition-colors"
+                title="Read full details"
+              >
                 {item.info}
               </p>
               <button 
@@ -265,7 +269,7 @@ export default function ServicesSection() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90dvh] sm:max-h-[85vh]"
             >
               {/* Close Button */}
               <button 
@@ -275,7 +279,7 @@ export default function ServicesSection() {
                 <X className="w-5 h-5 text-secondary" />
               </button>
 
-              <div className="p-8 sm:p-10 overflow-y-auto">
+              <div className="p-6 sm:p-10 overflow-y-auto flex-1">
                 <div className="flex items-center gap-5 mb-6">
                   <div className="p-4 bg-zinc-100 rounded-2xl">
                     <selectedService.Graphic className="w-8 h-8 text-primary" strokeWidth={1.5} />

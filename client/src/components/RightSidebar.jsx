@@ -13,8 +13,18 @@ const RightSidebar = forwardRef((props, sideRef) => {
       ref={sideRef}
       className="hidden md:flex flex-col items-center fixed top-10 right-0 h-screen w-28 py-8 z-50 pointer-events-none"
     >
+      {/* Services Link */}
+      <div className="pt-8 pointer-events-auto">
+        <Link 
+          to="/services" 
+          className="[writing-mode:vertical-rl] rotate-180 text-primary tracking-[0.2em] uppercase text-[12px] font-black hover:-translate-y-1 transition-transform inline-block cursor-pointer"
+        >
+          Services
+        </Link>
+      </div>
+
       {/* Vertical Text Branding */}
-      <div className="pt-8 [writing-mode:vertical-rl] rotate-180 text-secondary tracking-[0.2em] uppercase text-[10px] font-bold opacity-80 select-none">
+      <div className="pt-6 [writing-mode:vertical-rl] rotate-180 text-secondary tracking-[0.2em] uppercase text-[10px] font-bold opacity-80 select-none">
         Full-Stack Engineer & AI/ML Specialist
       </div>
 

@@ -17,6 +17,7 @@ const NAV_MENU_ITEMS = [
   { path: '/blog', label: 'Blog', mode: 'internal' },
   { path: 'about', label: 'About Me', mode: 'anchor' },
   { path: '/projects', label: 'Projects', mode: 'internal' },
+  { path: '/services', label: 'Services', mode: 'internal' },
   { path: '/codecraft', label: 'Code Craft', mode: 'internal' },
   { path: '/experience', label: 'Experience', mode: 'internal' },
   { path: 'contact', label: 'Contact', mode: 'anchor' },
@@ -149,7 +150,7 @@ const Navbar = () => {
       {/* DRAWER MENU */}
       <aside
         ref={sidebarMenuRef}
-        className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[999] flex flex-col translate-x-full"
+        className="fixed top-0 right-0 h-full w-[80vw] sm:w-80 bg-white shadow-2xl z-[999] flex flex-col translate-x-full"
       >
         <div className="flex justify-between items-center p-6 border-b border-muted/20">
           <img src="/logo.png" alt="Branding" width={38} height={38} />
