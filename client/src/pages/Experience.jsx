@@ -85,14 +85,6 @@ export default function ExperiencePage() {
         />
         <link rel="canonical" href="https://www.sadikaslam.in/experience" />
       </Helmet>
-      
-      {/* Standardized professional heading size */}
-      <div className="max-w-4xl mx-auto px-6 mb-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight uppercase text-black">
-          Career Milestones
-        </h1>
-        <div className="w-16 h-1 bg-gray-200 mt-4"></div>
-      </div>
 
       <ExperienceTimeline history={CAREER_HISTORY} />
     </main>
