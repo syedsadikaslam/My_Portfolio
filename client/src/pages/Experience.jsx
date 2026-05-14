@@ -40,7 +40,7 @@ const CAREER_HISTORY = [
   {
   category: 'corporate',
   period: 'Mar 2026 - Till Date', 
-  designation: 'Full-Stack Developer',
+  designation: 'Full Stack Developer',
   organization: 'Zidio Bangalore',
   certificateLink: 'https://drive.google.com/file/d/1qSGnzUKxiJIU_mZsMans1k3_cASyZQbv/view?usp=drivesdk',
   highlights: [
