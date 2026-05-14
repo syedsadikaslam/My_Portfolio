@@ -47,7 +47,7 @@ const CAREER_HISTORY = [
     'Developing and maintaining scalable web applications utilizing the complete MERN stack (MongoDB, Express.js, React.js, Node.js).',
     'Designing and integrating robust RESTful APIs to seamlessly connect interactive React front-ends with Node.js/Express back-ends.',
     'Collaborating with the team to implement modern UI/UX designs and optimizing database queries in MongoDB for enhanced application performance.'
-  ]
+  ] 
   },
  
   {
