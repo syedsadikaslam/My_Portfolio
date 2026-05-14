@@ -6,11 +6,10 @@ const CAREER_HISTORY = [
   {
     category: 'corporate',
     period: 'Mar 2026 - Till Date', 
-    designation: 'Lead Full Stack Developer, Cloud Engineer, Database Designer & Deployment Engineer',
+    designation: 'Full Stack Developer',
     organization: 'Zidio Bangalore',
     certificateLink: 'https://drive.google.com/file/d/1qSGnzUKxiJIU_mZsMans1k3_cASyZQbv/view?usp=drivesdk',
     highlights: [
-      'Serving as the Lead for Team 4 in the Zidio Web Development 1.1 program, driving project architecture and team coordination.',
       'Developing and maintaining scalable web applications utilizing the complete MERN stack (MongoDB, Express.js, React.js, Node.js).',
       'Designing and integrating robust RESTful APIs to seamlessly connect interactive React front-ends with Node.js/Express back-ends.',
       'Collaborating with the team to implement modern UI/UX designs and optimizing database queries in MongoDB for enhanced application performance.'
