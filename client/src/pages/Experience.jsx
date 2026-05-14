@@ -1,8 +1,6 @@
-
-
 import { Helmet } from 'react-helmet-async';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
- 
+
 const CAREER_HISTORY = [
   {
     category: 'corporate',
@@ -38,18 +36,17 @@ const CAREER_HISTORY = [
     ]
   },
   {
-  category: 'corporate',
-  period: 'Mar 2026 - Till Date', 
-  designation: 'Full Stack Developer',
-  organization: 'Zidio Bangalore',
-  certificateLink: 'https://drive.google.com/file/d/1qSGnzUKxiJIU_mZsMans1k3_cASyZQbv/view?usp=drivesdk',
-  highlights: [
-    'Developing and maintaining scalable web applications utilizing the complete MERN stack (MongoDB, Express.js, React.js, Node.js).',
-    'Designing and integrating robust RESTful APIs to seamlessly connect interactive React front-ends with Node.js/Express back-ends.',
-    'Collaborating with the team to implement modern UI/UX designs and optimizing database queries in MongoDB for enhanced application performance.'
-  ] 
+    category: 'corporate',
+    period: 'Mar 2026 - Till Date',
+    designation: 'Full Stack Developer',
+    organization: 'Zidio Bangalore',
+    certificateLink: 'https://drive.google.com/file/d/1qSGnzUKxiJIU_mZsMans1k3_cASyZQbv/view?usp=drivesdk',
+    highlights: [
+      'Developing and maintaining scalable web applications utilizing the complete MERN stack (MongoDB, Express.js, React.js, Node.js).',
+      'Designing and integrating robust RESTful APIs to seamlessly connect interactive React front-ends with Node.js/Express back-ends.',
+      'Collaborating with the team to implement modern UI/UX designs and optimizing database queries in MongoDB for enhanced application performance.'
+    ]
   },
- 
   {
     category: 'academic',
     period: 'Sep 2022 - Oct 2026',
@@ -76,14 +73,24 @@ const CAREER_HISTORY = [
 ];
 
 export default function ExperiencePage() {
-  
   return (
-    <main className="min-h-screen bg-background pt-10 pb-20">
+    <main
+      className="min-h-screen bg-background"
+      style={{
+        paddingTop: 'clamp(16px, 4vw, 40px)',
+        paddingBottom: 'clamp(40px, 8vw, 80px)',
+      }}
+    >
       <Helmet>
         <title>Experience | Sadik Aslam</title>
-        <meta name="description" content="Professional journey and academic milestones of Sadik Aslam. From IT Management to Full-Stack Engineering." />
+        <meta
+          name="description"
+          content="Professional journey and academic milestones of Sadik Aslam. From IT Management to Full-Stack Engineering."
+        />
         <link rel="canonical" href="https://www.sadikaslam.in/experience" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
+
       <ExperienceTimeline history={CAREER_HISTORY} />
     </main>
   );
