@@ -75,8 +75,7 @@ const CAREER_HISTORY = [
 
 export default function ExperiencePage() {
   return (
-    // Added pt-28 for proper gap below the navbar
-    <main className="min-h-screen bg-white text-black pt-28 pb-20">
+    <main className="min-h-screen bg-white text-black pt-16 pb-20">
       <Helmet>
         <title>Experience | Md Sadik</title>
         <meta 
