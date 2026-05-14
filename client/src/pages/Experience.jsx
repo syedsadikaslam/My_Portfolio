@@ -38,6 +38,19 @@ const CAREER_HISTORY = [
     ]
   },
   {
+  category: 'corporate',
+  period: 'Mar 2026 - Till Date', 
+  designation: 'Web Developer Intern',
+  organization: 'Zidio Development',
+  certificateLink: 'https://drive.google.com/file/d/1qSGnzUKxiJIU_mZsMans1k3_cASyZQbv/view?usp=drivesdk',
+  highlights: [
+    'Developing and maintaining scalable web applications utilizing the complete MERN stack (MongoDB, Express.js, React.js, Node.js).',
+    'Designing and integrating robust RESTful APIs to seamlessly connect interactive React front-ends with Node.js/Express back-ends.',
+    'Collaborating with the team to implement modern UI/UX designs and optimizing database queries in MongoDB for enhanced application performance.'
+  ]
+  },
+ 
+  {
     category: 'academic',
     period: 'Sep 2022 - Oct 2026',
     designation: 'B.Tech in Computer Science & Engineering',
