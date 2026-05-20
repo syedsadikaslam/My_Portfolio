@@ -29,17 +29,6 @@ const CAREER_HISTORY = [
   },
   {
     category: 'corporate',
-    period: 'Sep 2023 – Mar 2024',
-    designation: 'IT Manager',
-    organization: 'TCS iON',
-    certificateLink: 'https://drive.google.com/file/d/1WS3EZ3xMxdSuI8u2oiRqTJ74R4KvPJbx/view?usp=drive_link',
-    highlights: [
-      'Orchestrated technical lab operations during high-stakes examinations, maintaining 100% academic compliance and integrity standards.',
-      'Administered critical IT infrastructure including network troubleshooting and hardware maintenance to facilitate seamless digital assessments.'
-    ]
-  },
-  {
-    category: 'corporate',
     period: 'Aug 2023 - Oct 2023',
     designation: 'AI/ML Engineer & Data Science Associate',
     organization: 'YBI Foundation',
