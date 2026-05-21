@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Refactored Data Structure
 const REPOSITORY_DATA = [
   {
     uid: 'auth-secure',
@@ -335,26 +334,29 @@ const CodeCraftPage = () => {
   const layoutRoot = useRef(null);
   const cardElements = useRef([]);
 
-  // Logic Refactor: Using a more robust ref setter
   const registerCard = useCallback((el, i) => {
     if (el) cardElements.current[i] = el;
   }, []);
 
-  // GSAP: Advanced stagger and scroll logic
+  // FIXED: Har card ka alag scrollTrigger
   useLayoutEffect(() => {
     const animationContext = gsap.context(() => {
-      gsap.from(cardElements.current, {
-        opacity: 0,
-        y: 60,
-        scale: 0.95,
-        stagger: 0.15,
-        duration: 1,
-        ease: 'expo.out',
-        scrollTrigger: {
-          trigger: layoutRoot.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
+      cardElements.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.from(card, {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+          duration: 0.8,
+          ease: 'expo.out',
+          delay: i * 0.08,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        });
       });
     }, layoutRoot);
 
@@ -364,7 +366,6 @@ const CodeCraftPage = () => {
     };
   }, []);
 
-  // Accessibility: Keyboard listener
   useEffect(() => {
     const handleExit = (e) => e.key === 'Escape' && setFocusedSnippet(null);
     window.addEventListener('keydown', handleExit);
@@ -379,9 +380,9 @@ const CodeCraftPage = () => {
         <meta property="og:site_name" content="Sadik Aslam" />
         <link rel="canonical" href="https://www.sadikaslam.in/codecraft" />
       </Helmet>
-      {/* Narrative Header */}
+
       <header className="text-center mb-16">
-        <motion.h1 
+        <motion.h1
           className="text-5xl font-black tracking-tight text-primary uppercase"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -389,18 +390,17 @@ const CodeCraftPage = () => {
         >
           Code Craft
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="mt-6 text-lg text-secondary/80 max-w-xl mx-auto leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          Engineering high-performance systems requires attention to detail. 
+          Engineering high-performance systems requires attention to detail.
           Compare my production-ready patterns against standard implementations.
         </motion.p>
       </header>
 
-      {/* Action Prompt */}
       <section className="mb-20">
         <Link to="/services" className="group block p-10 bg-zinc-50 border border-zinc-200 rounded-3xl text-center transition-all hover:shadow-2xl hover:border-primary/20">
           <h3 className="text-2xl font-black text-primary mb-3">Elevate Your Infrastructure</h3>
@@ -409,10 +409,9 @@ const CodeCraftPage = () => {
         </Link>
       </section>
 
-      {/* Snippet Showcase Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {REPOSITORY_DATA.map((item, i) => (
-          <article 
+          <article
             key={item.uid}
             ref={(el) => registerCard(el, i)}
             className="flex flex-col bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
@@ -421,7 +420,6 @@ const CodeCraftPage = () => {
               <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
               <p className="text-zinc-500 text-sm leading-relaxed mb-6 italic">"{item.summary}"</p>
 
-              {/* Code Preview Node */}
               <div className="bg-[#0d1117] p-4 rounded-xl mb-8 overflow-hidden">
                 <SyntaxHighlighter
                   language={item.lang}
@@ -433,7 +431,7 @@ const CodeCraftPage = () => {
               </div>
 
               <div className="mt-auto pt-6 border-t border-zinc-50 flex items-center justify-between">
-                <button 
+                <button
                   onClick={() => setFocusedSnippet(item)}
                   className="px-6 py-2.5 bg-primary text-white text-xs font-black uppercase tracking-widest rounded-lg hover:brightness-110 transition-all"
                 >
@@ -446,17 +444,16 @@ const CodeCraftPage = () => {
         ))}
       </div>
 
-      {/* Comparison Modal Overlay */}
       <AnimatePresence>
         {focusedSnippet && (
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 sm:p-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="absolute inset-0 bg-zinc-900/90 backdrop-blur-xl"
               onClick={() => setFocusedSnippet(null)}
             />
-            
-            <motion.div 
+
+            <motion.div
               initial={{ y: 50, scale: 0.95 }} animate={{ y: 0, scale: 1 }} exit={{ y: 50, scale: 0.95 }}
               className="relative bg-white w-full max-w-6xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col"
               onClick={(e) => e.stopPropagation()}
@@ -470,7 +467,6 @@ const CodeCraftPage = () => {
               </div>
 
               <div className="p-10 overflow-y-auto space-y-10 scroll-smooth">
-                {/* Visual Indicators */}
                 <div className="flex gap-4">
                   <span className="flex items-center gap-2 px-4 py-1.5 bg-rose-50 border border-rose-100 text-rose-700 text-[10px] font-black uppercase rounded-full">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" /> Legacy Pattern
