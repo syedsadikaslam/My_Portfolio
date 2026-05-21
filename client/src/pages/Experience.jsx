@@ -66,7 +66,7 @@ export default function ExperiencePage() {
   return (
     <main className="min-h-screen bg-white text-black pt-16 pb-20">
       <Helmet>
-        <title>Experience | Md Sadik</title>
+        <title>Experience</title>
         <meta 
           name="description" 
           content="Professional journey and academic milestones of Md Sadik. Lead Full Stack Developer, Cloud Engineer, and IT Manager based in Delhi NCR." 
