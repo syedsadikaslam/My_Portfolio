@@ -56,7 +56,6 @@ router.post('/login', async (req, res) => {
       'Cookie-based JWT storage to mitigate XSS vulnerabilities.',
     ],
   },
-
   {
     uid: 'api-rate-limiter',
     title: 'Intelligent API Rate Limiting',
@@ -93,7 +92,6 @@ router.post('/api/data', async (req, res) => {
       'Returns retryAfter so clients can back off gracefully.',
     ],
   },
-
   {
     uid: 'db-query-optimizer',
     title: 'Optimized Database Query Pattern',
@@ -104,11 +102,13 @@ router.post('/api/data', async (req, res) => {
   const skip = (page - 1) * limit;
 
   const pipeline = [
-    { $match: {
-      ...(category && { category }),
-      ...(minPrice && { price: { $gte: Number(minPrice) } }),
-      isActive: true,
-    }},
+    {
+      $match: {
+        ...(category && { category }),
+        ...(minPrice && { price: { $gte: Number(minPrice) } }),
+        isActive: true,
+      },
+    },
     { $project: { name: 1, price: 1, category: 1, thumbnail: 1 } },
     { $sort: { createdAt: -1 } },
     { $skip: skip },
@@ -134,17 +134,14 @@ const getProducts = async (req, res) => {
       'Parallel countDocuments with Promise.all halves response time.',
     ],
   },
-
   {
     uid: 'async-error-handler',
     title: 'Global Async Error Middleware',
     summary: 'Express error boundary that catches async throws, normalizes error shape, and prevents server crashes.',
     lang: 'javascript',
-    activeCode: `// Wrapper utility
-const asyncHandler = (fn) => (req, res, next) =>
+    activeCode: `const asyncHandler = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-// Global error middleware (register last in Express)
 const errorMiddleware = (err, req, res, next) => {
   const status = err.statusCode || 500;
   const message = err.isOperational ? err.message : 'INTERNAL_SERVER_ERROR';
@@ -159,10 +156,14 @@ const errorMiddleware = (err, req, res, next) => {
   });
 };
 
-// Usage
 router.get('/user/:id', asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
-  if (!user) throw Object.assign(new Error('USER_NOT_FOUND'), { statusCode: 404, isOperational: true });
+  if (!user) {
+    throw Object.assign(new Error('USER_NOT_FOUND'), {
+      statusCode: 404,
+      isOperational: true,
+    });
+  }
   res.json(user);
 }));`,
     legacyCode: `// Try-catch in every route — repetitive and crash-prone
@@ -181,7 +182,6 @@ router.get('/user/:id', async (req, res) => {
       'Centralized logging gives full request context on every error.',
     ],
   },
-
   {
     uid: 'file-upload-secure',
     title: 'Secure File Upload Pipeline',
@@ -197,7 +197,11 @@ const fileFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-const upload = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024 } });
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
 
 const uploadAvatar = async (req, res) => {
   const optimized = await sharp(req.file.buffer)
@@ -206,7 +210,13 @@ const uploadAvatar = async (req, res) => {
     .toBuffer();
 
   const filename = \`avatars/\${req.user.id}-\${Date.now()}.webp\`;
-  await s3.putObject({ Bucket: process.env.S3_BUCKET, Key: filename, Body: optimized, ContentType: 'image/webp' }).promise();
+
+  await s3.putObject({
+    Bucket: process.env.S3_BUCKET,
+    Key: filename,
+    Body: optimized,
+    ContentType: 'image/webp',
+  }).promise();
 
   await User.findByIdAndUpdate(req.user.id, { avatar: filename });
   res.json({ success: true, avatar: filename });
@@ -226,7 +236,6 @@ router.post('/avatar', upload.single('file'), (req, res) => {
       'Cloud storage with structured keys enables CDN and lifecycle policies.',
     ],
   },
-
   {
     uid: 'react-query-pattern',
     title: 'Server State Management with React Query',
@@ -239,7 +248,6 @@ router.post('/avatar', upload.single('file'), (req, res) => {
     mutationFn: ({ taskId, updates }) =>
       api.patch(\`/tasks/\${taskId}\`, updates),
 
-    // Optimistic update
     onMutate: async ({ taskId, updates }) => {
       await queryClient.cancelQueries(['tasks', projectId]);
       const previous = queryClient.getQueryData(['tasks', projectId]);
@@ -280,7 +288,6 @@ const updateTask = async (taskId, updates) => {
       'Query invalidation ensures all components sharing the key stay in sync.',
     ],
   },
-
   {
     uid: 'env-config-validation',
     title: 'Startup Environment Validation',
@@ -290,7 +297,7 @@ const updateTask = async (taskId, updates) => {
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']),
-  PORT: z.string().regex(/^\d+$/).transform(Number),
+  PORT: z.string().regex(/^\\d+$/).transform(Number),
   MONGO_URI: z.string().url(),
   JWT_KEY: z.string().min(32, 'JWT_KEY must be at least 32 characters'),
   S3_BUCKET: z.string().min(1),
@@ -321,7 +328,6 @@ app.listen(PORT);            // NaN port — cryptic error`,
       'Exported config object replaces raw process.env access across the codebase.',
     ],
   },
-  
 ];
 
 const CodeCraftPage = () => {
