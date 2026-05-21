@@ -17,6 +17,7 @@ export default function ServicesPage() {
       <Helmet>
         <title>Services | Sadik Aslam</title>
         <meta name="description" content="Expert Full Stack development and AI consulting services by Sadik Aslam. Build scalable and intelligent solutions." />
+        <meta property="og:site_name" content="Sadik Aslam" />
         <link rel="canonical" href="https://www.sadikaslam.in/services" />
       </Helmet>
       

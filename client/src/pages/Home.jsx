@@ -15,7 +15,7 @@ export default function Home() {
     "name": "Sadik Aslam",
     "alternateName": ["Sadik", "Sadik Aslam"],
     "url": "https://www.sadikaslam.in",
-    "image": "https://www.sadikaslam.in/logo.png",
+    "image": "https://www.sadikaslam.in/profile.png",
     "jobTitle": "Full-Stack Engineer & AI/ML Specialist",
     "description": "Official engineering portfolio of Sadik Aslam. Showcasing production-ready Full Stack systems, Cloud Architecture, and AI-driven applications like InternX.",
     "sameAs": [
@@ -26,14 +26,42 @@ export default function Home() {
     "knowsAbout": ["Full Stack Development", "MERN Stack", "Cloud Engineering", "Next.js", "AI Integration", "React.js", "Node.js", "Express.js", "MongoDB", "Generative AI"]
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Sadik Aslam",
+    "alternateName": ["Sadik Aslam Portfolio", "Sadik Aslam Website"],
+    "url": "https://www.sadikaslam.in/"
+  };
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.sadikaslam.in/",
+    "name": "Sadik Aslam | Full-Stack Engineer & AI/ML Specialist",
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": "https://www.sadikaslam.in/profile.png"
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>Sadik Aslam | Full-Stack Engineer & AI/ML Specialist</title>
         <meta name="description" content="Explore the official portfolio of Sadik Aslam, a Full-Stack Engineer specializing in MERN, Cloud, and AI applications." />
         <link rel="canonical" href="https://www.sadikaslam.in/" />
+        <meta property="og:site_name" content="Sadik Aslam" />
+        <meta property="og:image" content="https://www.sadikaslam.in/profile.png" />
+        <meta name="twitter:image" content="https://www.sadikaslam.in/profile.png" />
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteJsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(webPageJsonLd)}
         </script>
       </Helmet>
 

@@ -66,11 +66,12 @@ export default function ExperiencePage() {
   return (
     <main className="min-h-screen bg-white text-black pt-16 pb-20">
       <Helmet>
-        <title>Experience</title>
+        <title>Experience | Sadik Aslam</title>
         <meta 
           name="description" 
           content="Professional journey and academic milestones of Md Sadik. Lead Full Stack Developer, Cloud Engineer, and IT Manager based in Delhi NCR." 
         />
+        <meta property="og:site_name" content="Sadik Aslam" />
         <link rel="canonical" href="https://www.sadikaslam.in/experience" />
       </Helmet>
 

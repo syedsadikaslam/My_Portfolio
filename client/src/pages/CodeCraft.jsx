@@ -104,6 +104,7 @@ const CodeCraftPage = () => {
       <Helmet>
         <title>Code Craft | Sadik Aslam</title>
         <meta name="description" content="A deep dive into high-performance patterns and software architecture by Sadik Aslam." />
+        <meta property="og:site_name" content="Sadik Aslam" />
         <link rel="canonical" href="https://www.sadikaslam.in/codecraft" />
       </Helmet>
       {/* Narrative Header */}

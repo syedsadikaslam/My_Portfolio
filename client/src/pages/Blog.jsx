@@ -77,7 +77,25 @@ const BlogPage = () => {
       <Helmet>
         <title>Blog | Sadik Aslam</title>
         <meta name="description" content="Technical insights and articles by Sadik Aslam. Sharing knowledge on Full Stack, Cloud, and AI." />
+        <meta name="keywords" content="Blog, Tech Articles, Full Stack, Cloud Computing, AI, Sadik Aslam, Software Engineering" />
+        <meta property="og:title" content="Blog | Sadik Aslam" />
+        <meta property="og:site_name" content="Sadik Aslam" />
+        <meta property="og:description" content="Technical insights and articles by Sadik Aslam. Sharing knowledge on Full Stack, Cloud, and AI." />
+        <meta property="og:url" content="https://www.sadikaslam.in/blog" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | Sadik Aslam" />
+        <meta name="twitter:description" content="Technical insights and articles by Sadik Aslam. Sharing knowledge on Full Stack, Cloud, and AI." />
         <link rel="canonical" href="https://www.sadikaslam.in/blog" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Blog | Sadik Aslam",
+            "url": "https://www.sadikaslam.in/blog",
+            "description": "Technical insights and articles by Sadik Aslam. Sharing knowledge on Full Stack, Cloud, and AI."
+          })}
+        </script>
       </Helmet>
       <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} className="mb-16 text-center">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-primary uppercase">
