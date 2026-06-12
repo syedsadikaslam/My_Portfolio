@@ -111,7 +111,7 @@ const MainFooter = () => {
           </motion.a>
 
           <motion.a
-            href="https://www.linkedin.com/in/Md-Sadik-9104a2252"
+            href="https://www.linkedin.com/in/sadikaslam/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -5, scale: 1.1 }}
