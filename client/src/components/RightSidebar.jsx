@@ -3,10 +3,6 @@
 import { forwardRef, memo } from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- * Refactored Sidebar Component
- * ForwardRef is maintained to allow GSAP animations from the Hero parent.
- */
 const RightSidebar = forwardRef((props, sideRef) => {
   return (
     <aside
@@ -44,7 +40,7 @@ const RightSidebar = forwardRef((props, sideRef) => {
           </svg>
         </Link>
 
-        <Link to="https://www.linkedin.com/in/Md-Sadik-9104a2252" 
+        <Link to="https://www.linkedin.com/in/sadikaslam" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-secondary transition-all duration-300 hover:text-primary hover:scale-125 hover:rotate-12 active:scale-95"
