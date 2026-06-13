@@ -1,27 +1,25 @@
-
-
-import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-
 import { ExternalLink, Github } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 1️⃣ REFACTORED PROJECT REPOSITORY
+// 1️ PROJECT REPOSITORY
 const PROJECT_COLLECTION = [
   {
     title: "INTELLMEET – AI-Enterprise Meeting & Collaboration Platform",
-    "brief": "A production-grade MERN stack collaboration hub featuring real-time video, AI meeting intelligence, and team management.",
-    "overview": "A scalable platform designed for modern remote teams that transforms unproductive meetings into actionable events. It features real-time video conferencing along with AI-powered summaries and automated action item extraction.",
-    "solution": "Eliminates manual note-taking through AI intelligence, reducing meeting follow-up time by 40-60%. It consolidates fragmented tools into a single, secure enterprise environment.",
-    "blockers": "Optimizing WebRTC and Socket.io clusters to handle high-concurrency (500+ participants), and managing complex environment variables and CORS policies across production environments like Render and Vercel.",
-    "roadmap": "Implementing auto-scaling with Kubernetes orchestration and Helm charts, setting up Prometheus and Grafana for advanced observability, and adding automated quotation/invoice generators.",
-    "stack": ["MongoDB", "Express.js", "React 19", "Node.js", "TypeScript", "Socket.io", "WebRTC", "Redis", "Gemini API", "Docker", "Tailwind CSS v4"],
-    "demoUrl": "https://intellmeets.vercel.app", 
-    "sourceUrl": "https://github.com/syedsadikaslam/IntellMeet-AI-Powered-Enterprise-Meeting-Collaboration-Platform",
-    "imagePath": "/snapshots/intellmeet.png"
+    brief: "A production-grade MERN stack collaboration hub featuring real-time video, AI meeting intelligence, and team management.",
+    overview: "A scalable platform designed for modern remote teams that transforms unproductive meetings into actionable events. It features real-time video conferencing along with AI-powered summaries and automated action item extraction.",
+    solution: "Eliminates manual note-taking through AI intelligence, reducing meeting follow-up time by 40-60%. It consolidates fragmented tools into a single, secure enterprise environment.",
+    blockers: "Optimizing WebRTC and Socket.io clusters to handle high-concurrency (500+ participants), and managing complex environment variables and CORS policies across production environments like Render and Vercel.",
+    roadmap: "Implementing auto-scaling with Kubernetes orchestration and Helm charts, setting up Prometheus and Grafana for advanced observability, and adding automated quotation/invoice generators.",
+    stack: ["MongoDB", "Express.js", "React 19", "Node.js", "TypeScript", "Socket.io", "WebRTC", "Redis", "Gemini API", "Docker", "Tailwind CSS v4"],
+    demoUrl: "https://intellmeets.vercel.app",
+    sourceUrl: "https://github.com/syedsadikaslam/IntellMeet-AI-Powered-Enterprise-Meeting-Collaboration-Platform",
+    imagePath: "/snapshots/intellmeet.png",
+    videoId: "https://youtu.be/WOesiOQYD9w?si=C5mdGWZIUxynhzNy",
   },
   {
     title: "SadiKart – PERN E-Commerce Platform",
@@ -44,10 +42,10 @@ const PROJECT_COLLECTION = [
     roadmap: "Implementing AI-based resume parsing for students and a smart-matching algorithm that notifies users when a generated internship fits their profile.",
     stack: ["React 19", "Gemini 2.5 Flash", "Node.js (Express 5)", "MongoDB", "Passport.js", "Tailwind CSS"],
     demoUrl: "https://internxai.vercel.app/",
-    sourceUrl: "https://github.com/syedsadikaslam/College-Events-Aggregator", 
+    sourceUrl: "https://github.com/syedsadikaslam/College-Events-Aggregator",
     imagePath: "/snapshots/internx.png",
     kpi: { amount: "500+", text: "Active Opportunities" },
- },
+  },
   {
     title: "SadiKart – Admin Panel",
     brief: "A secure and feature-rich admin dashboard for managing a full-scale e-commerce platform.",
@@ -86,7 +84,7 @@ const PROJECT_COLLECTION = [
   }
 ];
 
-// 2️⃣ DYNAMIC KPI COUNTER
+// 2️ DYNAMIC KPI COUNTER
 const MetricDisplay = ({ metric, label, isAnimated, onDark = false }) => {
   const countRef = useRef(null);
   const val = parseInt(metric);
@@ -126,19 +124,27 @@ const MetricDisplay = ({ metric, label, isAnimated, onDark = false }) => {
   );
 };
 
-// 3️⃣ INTERACTIVE WORK CARD
+// 3️ INTERACTIVE WORK CARD
 const WorkCard = ({ item, openModal }) => (
-  <div 
+  <div
     onClick={openModal}
     className="group bg-white rounded-2xl shadow-lg border border-zinc-100 overflow-hidden flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl cursor-pointer"
   >
     <div className="h-52 w-full relative overflow-hidden bg-zinc-100">
-      <img 
-        src={item.imagePath} 
-        alt={item.title} 
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
+      {/* Card always shows image thumbnail */}
+      <img
+        src={item.imagePath}
+        alt={item.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100"
       />
       <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors" />
+
+      {/*  Show a small YouTube play badge if project has a video */}
+      {item.videoId && (
+        <div className="absolute bottom-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-md">
+          ▶ Demo Video
+        </div>
+      )}
     </div>
 
     <div className="p-7 flex flex-col flex-grow">
@@ -154,36 +160,58 @@ const WorkCard = ({ item, openModal }) => (
       </div>
 
       <div className="flex items-center justify-between mt-5 pt-4 border-t border-zinc-50">
-        <span className="text-xs font-bold text-primary flex items-center gap-1"><ExternalLink size={12}/> Explore</span>
-        <span className="text-xs font-bold text-zinc-400 flex items-center gap-1"><Github size={12}/> Source</span>
+        <span className="text-xs font-bold text-primary flex items-center gap-1"><ExternalLink size={12} /> Explore</span>
+        <span className="text-xs font-bold text-zinc-400 flex items-center gap-1"><Github size={12} /> Source</span>
       </div>
     </div>
   </div>
 );
 
-// 4️⃣ REFACTORED PROJECT MODAL
+// 4️ PROJECT MODAL WITH VIDEO SUPPORT
 const DetailOverlay = ({ project, exit }) => {
   const boxRef = useRef(null);
 
   useLayoutEffect(() => {
-    gsap.fromTo(boxRef.current, { opacity: 0, y: 40, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" });
+    gsap.fromTo(
+      boxRef.current,
+      { opacity: 0, y: 40, scale: 0.98 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }
+    );
     document.body.style.overflow = "hidden";
     return () => (document.body.style.overflow = "auto");
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[1100] bg-zinc-900/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6" onClick={(e) => e.target === e.currentTarget && exit()}>
+    <div
+      className="fixed inset-0 z-[1100] bg-zinc-900/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6"
+      onClick={(e) => e.target === e.currentTarget && exit()}
+    >
       <div ref={boxRef} className="bg-white w-full max-w-3xl max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
         <button onClick={exit} className="absolute top-5 right-6 z-50 text-zinc-400 hover:text-primary text-2xl font-light">✕</button>
-        
+
         <div className="overflow-y-auto p-8 sm:p-12 space-y-10">
           <header>
             <h2 className="text-4xl font-black text-primary leading-tight">{project.title}</h2>
             <div className="h-1 w-20 bg-primary/20 mt-4 rounded-full" />
           </header>
 
-          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-            <img src={project.imagePath} alt="Project view" className="absolute inset-0 w-full h-full object-cover" />
+          {/*  VIDEO or IMAGE — same size box */}
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg bg-zinc-100">
+            {project.videoId ? (
+              <iframe
+                src={`https://youtu.be/WOesiOQYD9w?si=C5mdGWZIUxynhzNy`}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                title={project.title}
+              />
+            ) : (
+              <img
+                src={project.imagePath}
+                alt="Project view"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            )}
           </div>
 
           {project.kpi && <MetricDisplay metric={project.kpi.amount} label={project.kpi.text} isAnimated={false} onDark={true} />}
@@ -211,8 +239,8 @@ const DetailOverlay = ({ project, exit }) => {
           </div>
 
           <footer className="flex gap-4 pt-6">
-            <a href={project.demoUrl} target="_blank" className="flex-1 text-center py-4 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">Launch Live</a>
-            <a href={project.sourceUrl} target="_blank" className="flex-1 text-center py-4 bg-zinc-100 text-zinc-600 rounded-xl font-bold border border-zinc-200 hover:bg-zinc-200 transition-all">Git Repo</a>
+            <a href={project.demoUrl} target="_blank" rel="noreferrer" className="flex-1 text-center py-4 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">Launch Live</a>
+            <a href={project.sourceUrl} target="_blank" rel="noreferrer" className="flex-1 text-center py-4 bg-zinc-100 text-zinc-600 rounded-xl font-bold border border-zinc-200 hover:bg-zinc-200 transition-all">Git Repo</a>
           </footer>
         </div>
       </div>
@@ -220,7 +248,7 @@ const DetailOverlay = ({ project, exit }) => {
   );
 };
 
-// 5️⃣ MAIN PROJECTS SECTION
+// 5️ MAIN PROJECTS SECTION
 const ProjectsSection = () => {
   const root = useRef(null);
   const floatingBtn = useRef(null);
@@ -273,7 +301,11 @@ const ProjectsSection = () => {
       </div>
 
       {/* FLOAT BUTTON */}
-      <Link to="/services" ref={floatingBtn} className="fixed bottom-10 right-10 bg-primary text-white font-bold px-8 py-4 rounded-full shadow-2xl z-[100] hover:brightness-110 flex items-center gap-2">
+      <Link
+        to="/services"
+        ref={floatingBtn}
+        className="fixed bottom-10 right-10 bg-primary text-white font-bold px-8 py-4 rounded-full shadow-2xl z-[100] hover:brightness-110 flex items-center gap-2"
+      >
         Hire Me
       </Link>
 
