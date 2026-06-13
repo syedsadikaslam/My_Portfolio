@@ -160,8 +160,8 @@ const WorkCard = ({ item, openModal }) => (
       </div>
 
       <div className="flex items-center justify-between mt-5 pt-4 border-t border-zinc-50">
-        <span className="text-xs font-bold text-primary flex items-center gap-1"><ExternalLink size={12} /> Explore</span>
-        <span className="text-xs font-bold text-zinc-400 flex items-center gap-1"><Github size={12} /> Source</span>
+         <a href={item.demoUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-bold text-primary flex items-center gap-1 hover:underline"><ExternalLink size={12} /> Explore</a>
+         <a href={item.sourceUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-bold text-zinc-400 flex items-center gap-1 hover:underline"><Github size={12} /> Source</a>
       </div>
     </div>
   </div>
