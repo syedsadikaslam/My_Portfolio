@@ -275,7 +275,7 @@ const ProjectsSection = () => {
   return (
    <section ref={root} id="portfolio" className="container mx-auto pt-10 pb-32 px-4 sm:px-6 lg:px-8">
      <header className="text-center mb-12 space-y-4">
-        <h2 className="text-5xl font-black text-primary tracking-tighter">My Craft & Work</h2>
+        <h2 className="text-4xl font-black text-primary tracking-tighter">My Craft & Work</h2>
         <p className="text-zinc-500 max-w-xl mx-auto text-lg leading-relaxed">
           A selection of end-to-end applications built with performance, architecture, and user-intent in mind.
         </p>
