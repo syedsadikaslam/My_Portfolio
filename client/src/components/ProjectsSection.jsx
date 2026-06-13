@@ -19,7 +19,7 @@ const PROJECT_COLLECTION = [
     demoUrl: "https://intellmeets.vercel.app",
     sourceUrl: "https://github.com/syedsadikaslam/IntellMeet-AI-Powered-Enterprise-Meeting-Collaboration-Platform",
     imagePath: "/snapshots/intellmeet.png",
-    videoId: "https://youtu.be/WOesiOQYD9w?si=C5mdGWZIUxynhzNy",
+    videoId: "WOesiOQYD9w",
   },
   {
     title: "SadiKart – PERN E-Commerce Platform",
@@ -199,7 +199,7 @@ const DetailOverlay = ({ project, exit }) => {
           <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg bg-zinc-100">
             {project.videoId ? (
               <iframe
-                src={`https://youtu.be/WOesiOQYD9w?si=C5mdGWZIUxynhzNy`}
+                src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&rel=0&modestbranding=1`}
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
