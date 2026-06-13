@@ -12,10 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Data structure refactored for uniqueness
 const NAV_MENU_ITEMS = [
-  { path: 'https://drive.google.com/file/d/1F6EbLm0-VWTT0xWfjMzKyCesVuUio1kB/view?usp=drivesdk', label: 'View Resume', mode: 'external', openNew: true },
+  { path: 'https://drive.google.com/file/d/1F6EbLm0-VWTT0xWfjMzKyCesVuUio1kB/view?usp=drivesdk', label: 'Resume', mode: 'external', openNew: true },
   { path: 'hero', label: 'Home', mode: 'anchor' },
   { path: '/blog', label: 'Blog', mode: 'internal' },
-  { path: 'about', label: 'About Me', mode: 'anchor' },
+  { path: 'about', label: 'About', mode: 'anchor' },
   { path: '/projects', label: 'Projects', mode: 'internal' },
   { path: '/services', label: 'Services', mode: 'internal' },
   { path: '/codecraft', label: 'Code Craft', mode: 'internal' },
